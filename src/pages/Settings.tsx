@@ -12,7 +12,7 @@ import {
   Palette, 
   Globe, 
   Shield,
-  Sync,
+  RefreshCw,
   HelpCircle,
   LogOut,
   Crown,
@@ -53,7 +53,7 @@ const Settings = () => {
     {
       title: 'المزامنة والتكامل',
       items: [
-        { icon: Sync, label: 'مزامنة تلقائية', description: 'مزامنة البيانات مع السحابة', action: 'toggle', enabled: true },
+        { icon: RefreshCw, label: 'مزامنة تلقائية', description: 'مزامنة البيانات مع السحابة', action: 'toggle', enabled: true },
         { icon: Calendar, label: 'تكامل التقويم', description: 'Google Calendar, Outlook', action: 'navigate' },
         { icon: Mail, label: 'البريد الإلكتروني', description: 'تحويل الإيميلات إلى مهام', action: 'toggle', enabled: false },
       ]
