@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -16,10 +16,12 @@ import {
   MoreVertical,
   Kanban,
   List,
-  Layout
+  Layout,
+  Eye
 } from 'lucide-react';
 
 const Tasks = () => {
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<'list' | 'kanban' | 'calendar'>('list');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -126,7 +128,7 @@ const Tasks = () => {
                 <Filter size={16} className="ml-2" />
                 فلترة
               </Button>
-              <Button size="sm" className="gradient-bg">
+              <Button size="sm" className="gradient-bg" onClick={() => navigate('/add-task')}>
                 <Plus size={16} className="ml-2" />
                 مهمة جديدة
               </Button>
@@ -171,12 +173,24 @@ const Tasks = () => {
                 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between">
-                    <h3 className={`font-medium ${task.completed ? 'text-muted-foreground line-through' : 'text-foreground'}`}>
+                    <h3 
+                      className={`font-medium cursor-pointer hover:text-primary ${task.completed ? 'text-muted-foreground line-through' : 'text-foreground'}`}
+                      onClick={() => navigate(`/tasks/${task.id}`)}
+                    >
                       {task.title}
                     </h3>
-                    <Button variant="ghost" size="sm">
-                      <MoreVertical size={16} />
-                    </Button>
+                    <div className="flex items-center gap-1">
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={() => navigate(`/tasks/${task.id}`)}
+                      >
+                        <Eye size={16} />
+                      </Button>
+                      <Button variant="ghost" size="sm">
+                        <MoreVertical size={16} />
+                      </Button>
+                    </div>
                   </div>
                   
                   <div className="flex items-center gap-2 mt-2 flex-wrap">
@@ -219,7 +233,11 @@ const Tasks = () => {
 
         {/* Add Task Button (Floating) */}
         <div className="fixed bottom-24 left-6 z-40">
-          <Button size="lg" className="rounded-full gradient-bg shadow-lg hover:shadow-xl transition-all duration-300">
+          <Button 
+            size="lg" 
+            className="rounded-full gradient-bg shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => navigate('/add-task')}
+          >
             <Plus size={24} />
           </Button>
         </div>
