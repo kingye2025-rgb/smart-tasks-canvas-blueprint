@@ -41,6 +41,10 @@ const Login = () => {
     // Implement social login
   };
 
+  const handleRememberMeChange = (checked: boolean | "indeterminate") => {
+    setRememberMe(checked === true);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-accent/10 flex items-center justify-center p-6">
       <div className="max-w-md w-full space-y-6">
@@ -109,7 +113,7 @@ const Login = () => {
                 <Checkbox 
                   id="remember"
                   checked={rememberMe}
-                  onCheckedChange={setRememberMe}
+                  onCheckedChange={handleRememberMeChange}
                 />
                 <label htmlFor="remember" className="text-sm text-muted-foreground">
                   تذكرني
